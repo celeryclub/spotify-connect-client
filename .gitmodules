@@ -1,0 +1,3 @@
+[submodule "smartie"]
+	path = smartie
+	url = git@github.com:celeryclub/smartie.git
