@@ -9,8 +9,8 @@ sudo pip install -r requirements.txt
 
 ```sh
 # Run in foreground
-python smartie-server.py
+python -u client.py
 
-#pyserial Run in background
-python smartie-server.py > ./smartie-server.log 2>&1 &
+# Run in background
+python -u client.py > ./smartie-server.log 2>&1 &
 ```
