@@ -39,9 +39,14 @@ def thready():
   while connect_active:
     print('checking metadata')
 
-    metadata_request = requests.get(metadata_url)
-    metadata_json = metadata_request.json()
-    write_json_to_screen(metadata_json)
+    try:
+      metadata_request = requests.get(metadata_url)
+    except requests.ConnectionError:
+      print('server offline')
+    else:
+      metadata_json = metadata_request.json()
+      write_json_to_screen(metadata_json)
+
     sleep(2)
 
 def turn_on():
@@ -75,9 +80,16 @@ try:
   while True:
     print('checking status')
 
-    status_request = requests.get(status_url)
-    status_json = status_request.json()
-    active = status_json['active'] and status_json['playing']
+    active = False
+
+    try:
+      status_request = requests.get(status_url)
+    except requests.ConnectionError:
+      print('server offline')
+    else:
+      status_json = status_request.json()
+      active = status_json['active'] and status_json['playing']
+
     print(active)
 
     handle_status(active)
