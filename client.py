@@ -78,8 +78,6 @@ def handle_status(new_active):
 
 try:
   while True:
-    print('checking status')
-
     active = False
 
     try:
@@ -89,8 +87,6 @@ try:
     else:
       status_json = status_request.json()
       active = status_json['active'] and status_json['playing']
-
-    print(active)
 
     handle_status(active)
     sleep(10)
